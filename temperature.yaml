@@ -1,0 +1,26 @@
+---
+substitutions:
+  name: temperature
+  friendly_name: temperature
+
+packages:
+  common: !include modules/common-32-idf.yaml
+
+one_wire:
+  - platform: gpio
+    pin:
+      number: GPIO5
+      mode:
+        input: true
+        pullup: true
+
+sensor:
+  - platform: dallas_temp
+    name: "Temperature"
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    update_interval: 10s
+
+deep_sleep:
+  run_duration: 60s
+  sleep_duration: 30min

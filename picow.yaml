@@ -1,0 +1,7 @@
+---
+substitutions:
+  name: picow
+  friendly_name: picow
+
+packages:
+  common: !include modules/common-picow.yaml

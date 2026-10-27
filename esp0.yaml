@@ -1,0 +1,7 @@
+---
+substitutions:
+  name: esp0
+  friendly_name: esp0
+
+packages:
+  common: !include modules/common-32-idf.yaml

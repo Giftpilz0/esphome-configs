@@ -1,0 +1,25 @@
+---
+substitutions:
+  name: modbusbridge
+  friendly_name: Modbus Bridge
+
+packages:
+  common: !include modules/common-32-idf.yaml
+
+external_components:
+  - source: github://grob6000/esphome-stream-server
+
+uart:
+  id: uart_modbus
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  flow_control_pin: GPIO22
+  baud_rate: 9600
+  parity: NONE
+  data_bits: 8
+  stop_bits: 1
+
+stream_server:
+  uart_id: uart_modbus
+  port: 502
+  buffer_size: 512

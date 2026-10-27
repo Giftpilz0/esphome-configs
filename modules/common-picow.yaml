@@ -1,0 +1,12 @@
+---
+substitutions:
+  board: rpipicow
+
+rp2040:
+  board: ${board}
+  framework:
+    platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
+
+packages:
+  base: !include common-base.yaml
+  wifi: !include common/wifi.yaml

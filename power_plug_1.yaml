@@ -1,0 +1,7 @@
+---
+substitutions:
+  name: powerplug1
+  friendly_name: Power Plug 1
+
+packages:
+  common: !include modules/devices/delock-11827.yaml

@@ -1,0 +1,63 @@
+---
+substitutions:
+  board: esp8285
+  restore_mode: RESTORE_DEFAULT_OFF
+
+packages:
+  common: !include ../common-8266.yaml
+
+sensor:
+  - platform: hlw8012
+    cf_pin: GPIO04
+    cf1_pin: GPIO05
+    sel_pin:
+      number: GPIO12
+      inverted: true
+    current:
+      name: "${friendly_name}: Current"
+      unit_of_measurement: A
+      accuracy_decimals: 3
+    voltage:
+      name: "${friendly_name}: Voltage"
+      unit_of_measurement: V
+      accuracy_decimals: 0
+    power:
+      name: "${friendly_name}: Power"
+      id: power
+      unit_of_measurement: W
+      accuracy_decimals: 0
+    energy:
+      name: "${friendly_name}: Energy"
+      unit_of_measurement: Wh
+    voltage_divider: 2182
+    current_resistor: 0.0009356
+    change_mode_every: 3
+    update_interval: 10s
+
+  - platform: total_daily_energy
+    name: "${friendly_name}: Total Daily Energy"
+    power_id: power
+    unit_of_measurement: Wh
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO3
+      inverted: true
+    name: "${friendly_name}: Button"
+    on_press:
+      - switch.toggle: relay
+
+switch:
+  - platform: gpio
+    id: led
+    pin: GPIO13
+  - platform: gpio
+    name: "${friendly_name}: Smart Plug"
+    pin: GPIO14
+    id: relay
+    restore_mode: ${restore_mode}
+    on_turn_on:
+      - switch.turn_on: led
+    on_turn_off:
+      - switch.turn_off: led

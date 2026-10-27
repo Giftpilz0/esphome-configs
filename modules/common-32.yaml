@@ -1,0 +1,14 @@
+---
+substitutions:
+  board: esp32dev
+
+esp32:
+  board: ${board}
+  framework:
+    type: arduino
+
+packages:
+  base: !include common-base.yaml
+  wifi: !include common/wifi.yaml
+  web_server: !include common/webserver.yaml
+  captive_portal: !include common/captive_portal.yaml

@@ -1,0 +1,11 @@
+---
+button:
+  - platform: safe_mode
+    name: "${friendly_name}: Safe Mode"
+    id: safe_mode_button
+  - platform: restart
+    name: "${friendly_name}: Restart"
+    id: restart_button
+  - platform: factory_reset
+    name: "${friendly_name}: Factory Reset"
+    id: factory_reset_button
